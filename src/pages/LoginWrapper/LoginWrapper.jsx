@@ -1,6 +1,6 @@
 import React from "react";
-import styles from "./Login.module.css";
-import Login from "./Login.jsx";
+import styles from "./styles.module.css";
+import Login from "../../components/Login/Login.jsx";
 
 const LoginWrapper = () => {
   return (

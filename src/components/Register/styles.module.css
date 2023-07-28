@@ -11,6 +11,7 @@
 .login {
   width: 60%;
   margin: auto !important;
+  max-width: 600px;
   /* background-color: blue; */
 }
 

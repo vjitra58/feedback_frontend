@@ -1,11 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
 import styles from "./Content.module.css";
-import ProductCard from "./ProductCard";
+import ProductCard from "../ProductCard/ProductCard";
 import AddProductModal from "../Modals/AddProductModal.jsx";
 import LoginModal from "../Modals/LoginModal";
 import RegisterModal from "../Modals/RegisterModal";
-import Loader from "../Layout/Loader.jsx";
-import nothingImg from "../../assets/nothing.avif";
+import Loader from "../Loader/Loader.jsx";
+import nothingImg from "../../assets/images/nothing.avif";
 
 import { useSelector, useDispatch } from "react-redux";
 import { getAllProduct, getFilterData } from "../../redux/actions/product.js";

@@ -5,7 +5,7 @@ import { BiMessageRoundedDetail } from "react-icons/bi";
 import { RxCaretUp } from "react-icons/rx";
 import { IoMdSend } from "react-icons/io";
 // import {FaMessage} from "react-icons/fa";
-import messageIcon from "../../assets/messageIcon.svg";
+import messageIcon from "../../assets/icons/messageIcon.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { commentOnProduct, likeOnProduct } from "../../redux/actions/product";
 import EditProductModal from "../Modals/EditProductModal";

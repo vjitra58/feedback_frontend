@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Navbar.module.css";
-import profilePic from "../../assets/profilePic.jpg";
+import profilePic from "../../assets/images/profilePic.jpg";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../redux/actions/user.js";

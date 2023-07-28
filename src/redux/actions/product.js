@@ -1,3 +1,4 @@
+import { addProductApi, commentOnProductApi, deleteProductByIdApi, editProductApi, getAllProductApi, getFilterDataApi, getProductByIdApi, likeOnProductApi, searchProductApi } from "../../api/productApi";
 import { server } from "../store";
 import axios from "axios";
 
@@ -6,22 +7,14 @@ export const getAllProduct =
     try {
       dispatch({ type: "getAllProductRequest" });
 
-      const { data } = await axios.get(
-        `${server}/product/getall?filter=${filter}&sort=${sortMethod}`,
-        {
-          headers: {
-            "Content-type": "application/json",
-          },
-          // withCredentials: true,
-        }
-      );
+      const {data} = await getAllProductApi(filter, sortMethod);
 
       dispatch({ type: "getAllProductSuccess", payload: data });
     } catch (error) {
       console.log(error);
       dispatch({
         type: "getAllProductFail",
-        payload: error.response.data.message,
+        payload: error?.response?.data?.message,
       });
     }
   };
@@ -31,15 +24,7 @@ export const getAllProduct =
     try {
       dispatch({ type: "addProductRequest" });
         
-         const token = localStorage.getItem("token");
-
-      const { data } = await axios.post(`${server}/product/add`, formdata, {
-        headers: {
-          "Content-type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        // withCredentials: true,
-      });
+        const {data} = await addProductApi(formdata);
   
       dispatch({ type: "addProductSuccess", payload: data.message });
     } catch (error) {
@@ -56,16 +41,7 @@ export const commentOnProduct = (id, comment) => async (dispatch) => {
     try {
         dispatch({ type: "commentOnProductRequest" });
     
-        const { data } = await axios.put(
-        `${server}/product/comment/${id}`,
-        { comment },
-        {
-            headers: {
-            "Content-type": "application/json",
-            },
-            // withCredentials: true,
-        }
-        );
+       const {data} = await commentOnProductApi(id, comment);
     
         dispatch({ type: "commentOnProductSuccess", payload: data.message });
     } catch (error) {
@@ -81,17 +57,8 @@ export const likeOnProduct = (id) => async (dispatch) => {
     try {
         dispatch({ type: "likeOnProductRequest" });
 
-        const { data } = await axios.put(
-        `${server}/product/like/${id}`,
-        {},
-        {
-            headers: {
-            "Content-type": "application/json",
-            },
-            // withCredentials: true,
-        }
-        );
-    
+        const {data} = await likeOnProductApi(id);
+       
         dispatch({ type: "likeOnProductSuccess", payload: data.message });
     } catch (error) {
         console.log(error);
@@ -107,13 +74,8 @@ export const getFilterData = () => async (dispatch) => {
     try {
         dispatch({ type: "getFilterDataRequest" });
     
-        const { data } = await axios.get(`${server}/product/filterdata`, {
-        headers: {
-            "Content-type": "application/json",
-        },
-        // withCredentials: true,
-        });
-    
+        const {data} = getFilterDataApi();
+        
         dispatch({ type: "getFilterDataSuccess", payload: data.result });
     } catch (error) {
         console.log(error);
@@ -127,18 +89,7 @@ export const getFilterData = () => async (dispatch) => {
 export const EditProduct = (id, formdata) => async (dispatch) => {
     try {
         dispatch({ type: "EditProductRequest" });
-        const token = localStorage.getItem("token");
-        const { data } = await axios.put(
-          `${server}/product/edit/${id}`,
-          formdata,
-          {
-            headers: {
-              "Content-type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-            // withCredentials: true,
-          }
-        );
+       const {data} = await editProductApi(id, formdata);
     
         dispatch({ type: "EditProductSuccess", payload: data.message });
     } catch (error) {
@@ -155,12 +106,7 @@ export const getProductById = (id) => async (dispatch) => {
   try {
     dispatch({ type: "productRequest" });
 
-    const { data } = await axios.get(`${server}/product/${id}`, {
-      headers: {
-        "Content-type": "application/json",
-      },
-      //  withCredentials: true,
-    });
+    const {data} = await getProductByIdApi(id);
 
     dispatch({ type: "productSuccess", payload: data.product });
   } catch (error) {
@@ -174,14 +120,7 @@ export const getProductById = (id) => async (dispatch) => {
 export const deleteProductById = (id) => async (dispatch) => {
   try {
     dispatch({ type: "deleteProductRequest" });
-    const token = localStorage.getItem("token");
-    const { data } = await axios.delete(`${server}/product/delete/${id}`, {
-      headers: {
-        "Content-type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      // withCredentials: true,
-    });
+    const {data} = await deleteProductByIdApi(id);
 
     dispatch({ type: "deleteProductSuccess", payload: data.message });
   } catch (error) {
@@ -197,16 +136,7 @@ export const searchProduct = (keyword) => async (dispatch) => {
   try {
     dispatch({ type: "SearchRequest" });
 
-    const { data } = await axios.get(
-      `${server}/product/allproducts?keyword=${keyword}`,
-      {
-        headers: {
-          "Content-type": "application/json",
-        },
-        // withCredentials: true,
-      }
-    );
-
+    const {data} = await searchProductApi(keyword);
     dispatch({ type: "SearchSuccess", payload: data.products });
   } catch (error) {
     console.log(error);
