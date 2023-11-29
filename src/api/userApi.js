@@ -47,7 +47,7 @@ export const registerUserApi = async (formdata)=> {
             },
           });
       
-          localStorage.setItem("token", response.data.token);
+          localStorage.setItem("token", response?.data?.token);
         return response;
     }catch(error){
         return error;

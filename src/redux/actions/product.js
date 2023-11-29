@@ -64,7 +64,7 @@ export const likeOnProduct = (id) => async (dispatch) => {
         console.log(error);
         dispatch({
         type: "likeOnProductFail",
-        payload: error.response.data.message,
+        payload: error?.response?.data?.message,
         });
     }
 }
