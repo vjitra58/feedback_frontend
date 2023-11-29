@@ -1,6 +1,6 @@
 import React from "react";
-import styles from "./Login.module.css";
-import Register from "./Register.jsx";
+import styles from "./styles.module.css";
+import Register from "../../components/Register/Register.jsx";
 
 const RegisterWrapper = () => {
   return (

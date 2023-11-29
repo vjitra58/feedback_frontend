@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styles from "./Login.module.css";
+import styles from "./styles.module.css";
 import { AiOutlineMail } from "react-icons/ai";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { Link, useNavigate } from "react-router-dom";
@@ -63,7 +63,7 @@ const Login = ({ ispopup }) => {
   //  }, [error, message, dispatch]);
 
   return (
-    <div style={{ width: ispopup ? "100%" : "auto" }} className={styles.login}>
+    <div style={{ width: ispopup ? "100%" : "" }} className={styles.login}>
       <h1 style={{ display: ispopup ? "none" : "block" }}>Feedback</h1>
       <p style={{ display: ispopup ? "none" : "block" }}>
         Add your Products and give us your valuable feedback

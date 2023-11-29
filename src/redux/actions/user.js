@@ -1,22 +1,11 @@
-import { server } from "../store";
-import axios from "axios";
+
+import { loadUserApi, loginUserApi, logoutUserApi, registerUserApi } from "../../api/userApi.js";
 
 export const login = (email, password) => async (dispatch) => {
   try {
     dispatch({ type: "loginRequest" });
 
-    const { data } = await axios.post(
-      `${server}/user/login`,
-      { email, password },
-      {
-        headers: {
-          "Content-type": "application/json",
-        },
-        // withCredentials: true,
-      }
-    );
-
-    localStorage.setItem("token", data.token);
+    const {data} = await loginUserApi(email, password);
 
     dispatch({ type: "loginSuccess", payload: data });
   } catch (error) {
@@ -24,26 +13,18 @@ export const login = (email, password) => async (dispatch) => {
   }
 };
 
+
 export const loadUser = () => async (dispatch) => {
   try {
     dispatch({ type: "loadUserRequest" });
 
-    const token = localStorage.getItem("token");
+    const {data} = await loadUserApi();
 
-    const { data } = await axios.get(
-      `${server}/user/profile`,
-
-      {
-        headers: {
-          "Content-type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        // withCredentials: true,
-      }
-    );
-    dispatch({ type: "loadUserSuccess", payload: data.user });
+    if(data)dispatch({ type: "loadUserSuccess", payload: data.user });
+    else dispatch({ type: "loadUserFail", payload: "User Not logged In" });
   } catch (error) {
-    dispatch({ type: "loadUserFail", payload: error.response.data.message });
+    console.log(error);
+    dispatch({ type: "loadUserFail", payload: error?.response?.data?.message });
   }
 };
 
@@ -51,15 +32,7 @@ export const register = (formdata) => async (dispatch) => {
   try {
     dispatch({ type: "registerRequest" });
 
-    const { data } = await axios.post(`${server}/user/register`, formdata, {
-      headers: {
-        "Content-type": "application/json",
-      },
-
-      // withCredentials: true,
-    });
-
-    localStorage.setItem("token", data.token);
+    const {data} = await registerUserApi(formdata);
 
     dispatch({ type: "registerSuccess", payload: data });
   } catch (error) {
@@ -71,10 +44,7 @@ export const logout = () => async (dispatch) => {
   try {
     dispatch({ type: "logoutRequest" });
 
-    const { data } = await axios.post(`${server}/user/logout`, {
-      // withCredentials: true,
-    });
-    localStorage.removeItem("token");
+    const {data} = await logoutUserApi();
     dispatch({ type: "logoutSuccess", payload: data.message });
   } catch (error) {
     dispatch({ type: "logoutFail", payload: error.response.data.message });

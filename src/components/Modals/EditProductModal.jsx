@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import Modal from "react-modal";
-import Login from "../Auth/Login.jsx";
+import Login from "../Login/Login.jsx";
 import AddProduct from "../AddProduct/AddProduct.jsx";
 import styles from "./styles.module.css";
 import { useDispatch, useSelector } from "react-redux";
