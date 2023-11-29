@@ -1,7 +1,7 @@
 import React from "react";
 import Modal from "react-modal";
-import Login from "../Auth/Login.jsx";
-import Register from "../Auth/Register.jsx";
+import Login from "../Login/Login.jsx";
+import Register from "../Register/Register.jsx";
 import styles from "./styles.module.css";
 
 

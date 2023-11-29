@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import styles from "./Home.module.css";
-import Navbar from "../Layout/Navbar.jsx";
-import poster from "../../assets/poster.png";
-import Content from "./Content.jsx";
+import Navbar from "../../components/Navbar/Navbar.jsx";
+import poster from "../../assets/images/poster.png";
+import Content from "../../components/Content/Content.jsx";
 
 const Home = () => {
   return (
