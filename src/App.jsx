@@ -5,6 +5,8 @@ import toast, { Toaster } from "react-hot-toast";
 import { loadUser } from "./redux/actions/user.js";
 import { useDispatch, useSelector } from "react-redux";
 
+//this is the second branch for task2
+
 //components
 import Home from "./pages/Home/Home.jsx";
 import LoginWrapper from "./pages/LoginWrapper/LoginWrapper.jsx";
